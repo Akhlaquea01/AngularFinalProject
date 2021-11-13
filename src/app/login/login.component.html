@@ -1,0 +1,46 @@
+<div class="content" *ngIf="!forgotPasswordClicked">
+  <section>
+    <div class="register-wrapper">
+      <div class="register-block">
+        <h3 class="register-title">Login</h3>
+        <form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
+          <input type="email" name="email" placeholder="Enter your email" [(ngModel)]="user.email" required />
+          <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="user.password"
+            required />
+          <input type="submit" value="Login" [disabled]="!loginForm.valid" />
+        </form>
+        <span (click)="forgotPasswordClickHandler()">Forget Password</span>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="content" *ngIf="forgotPasswordClicked && !dataVerified">
+  <section>
+    <div class="register-wrapper">
+      <div class="register-block">
+        <h3 class="register-title">Forgot Password</h3>
+        <form (ngSubmit)="onForgot(forgotPwd.value)" #forgotPwd="ngForm">
+          <input type="email" name="email" placeholder="Enter your email" [(ngModel)]="userData.email" required />
+          <input type="date" name="dob" placeholder="Date of  Birth" [(ngModel)]="userData.dob"
+            required />
+          <input type="submit" value="Go" [disabled]="!forgotPwd.valid" />
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="content" *ngIf="forgotPasswordClicked && dataVerified">
+  <section>
+    <div class="register-wrapper">
+      <div class="register-block">
+        <h3 class="register-title">Reset Password</h3>
+        <form (ngSubmit)="onReset(resetPwd.value)" #resetPwd="ngForm">
+          <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="userData.newPass" required />
+          <input type="password" name="cpassword" placeholder="Enter your password" [(ngModel)]="userData.cNewPass"
+            required />
+          <input type="submit" value="Reset" [disabled]="!resetPwd.valid" />
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
